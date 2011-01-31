@@ -42,23 +42,28 @@ namespace SpectralSpring.ModuleSupport.Ui
         /// </summary>
         private void RefreshMenu()
         {
-            ShellWindow.RibbonMainMenu.Items.Clear();
+            RibbonApplicationMenu MainMenu = ShellWindow.RibbonMainMenu as RibbonApplicationMenu;
 
-            bool firstGroup = true;
-            
-            foreach (string group in menuGroups.Keys)
+            if (MainMenu != null)
             {
-                IList<RibbonApplicationMenuItem> items = menuGroups[group];
+                MainMenu.Items.Clear();
 
-                if (!firstGroup)
-                    ShellWindow.RibbonMainMenu.Items.Add(new RibbonSeparator());
+                bool firstGroup = true;
 
-                foreach (RibbonApplicationMenuItem item in items)
+                foreach (string group in menuGroups.Keys)
                 {
-                    ShellWindow.RibbonMainMenu.Items.Add(item);
-                }
+                    IList<RibbonApplicationMenuItem> items = menuGroups[group];
 
-                firstGroup = false;                
+                    if (!firstGroup)
+                        MainMenu.Items.Add(new RibbonSeparator());
+
+                    foreach (RibbonApplicationMenuItem item in items)
+                    {
+                        MainMenu.Items.Add(item);
+                    }
+
+                    firstGroup = false;
+                }
             }
 
         }
