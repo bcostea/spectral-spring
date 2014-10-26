@@ -1,5 +1,4 @@
-# Application lifecycle and functional
-modularization
+# Application lifecycle and functional modularization
 
 ## Purpose and scope
 
